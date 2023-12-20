@@ -15,25 +15,40 @@ let winningPatterns = [
 ]
 
 const checkWinner = () => {
+    let filledBoxes = 0;
+
     for (let pattern of winningPatterns) {
         const [a, b, c] = pattern;
         if (boxes[a].textContent && boxes[a].textContent === boxes[b].textContent && boxes[b].textContent === boxes[c].textContent) {
+
             if (boxes[a].textContent === 'O') {
                 winner.textContent = `Congratulation O Wins!`;
-                winner.style.color = 'green'
-            }
-            else {
+                winner.style.color = 'green';
+            } else {
                 winner.textContent = `Congratulation X Wins!`;
-                winner.style.color = 'blue'
+                winner.style.color = 'blue';
             }
-            boxes.forEach((box) => {
-                box.disabled = true
 
-            })
-            break;
+            boxes.forEach((box) => {
+                box.disabled = true;
+            });
+
+            return;
         }
     }
-}
+
+    for (let box of boxes) {
+        if (box.textContent) {
+            filledBoxes++;
+        }
+    }
+
+    if (filledBoxes === boxes.length) {
+        winner.textContent = `It's a Draw! Please reset game`;
+        winner.style.color = 'orange';
+    }
+};
+
 
 let box0 = true
 

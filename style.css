@@ -11,11 +11,11 @@
     color: blueviolet;
 }
 
-.winner{
+.winner {
     color: green;
 }
 
-body{
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -50,4 +50,10 @@ body{
     background-color: blueviolet;
     cursor: pointer;
     transition: all ease-in-out 0.2s
+}
+
+@media (max-width : 435px) {
+    .game {
+        width: 100%;
+    }
 }
