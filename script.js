@@ -44,7 +44,7 @@ const checkWinner = () => {
     }
 
     if (filledBoxes === boxes.length) {
-        winner.textContent = `It's a Draw! Please reset game`;
+        winner.textContent = `It's a Draw! Reset game`;
         winner.style.color = 'orange';
     }
 };
