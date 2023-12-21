@@ -1,8 +1,10 @@
 const boxes = document.querySelectorAll('.box')
 const reset = document.querySelector('.reset')
 const turn = document.querySelector('.turn')
-const start = document.querySelector('.start')
-const counter = document.querySelector('.counter')
+const circle = document.querySelector('.circle')
+const theme = document.querySelector('.color')
+const btn = document.querySelector('.btn')
+const heading = document.querySelector('.heading')
 
 let box0 = true
 
@@ -14,50 +16,44 @@ boxes.forEach((box) => {
             box.textContent = 'O'
             box.style.color = 'green'
             turn.textContent = 'Player  X turn'
+            turn.style.color = 'red'
             box0 = false
         }
         else {
             box.textContent = 'X'
-            box.style.color = 'blue'
+            box.style.color = 'red'
             turn.textContent = 'Player O turn'
+            turn.style.color = 'green'
             box0 = true
         }
 
         box.disabled = true
         checkWinner()
 
-
     })
 
-    let num = 0;
-    let num2 = 0;
-    let count;
-    let gameStarted;
+    // ..........Theme functionality..............
 
-    start.addEventListener('click', () => {
-        turn.textContent = "Game Started ! Let's Play"
-        box.disabled = false
-        count = setInterval(() => {
-            counter.textContent = num++
-        }, 1000);
-        gameStarted = true
 
+    theme.addEventListener('change', (e) => {
+        let themeColor = e.target.value
+        btn.style.backgroundColor = themeColor
+        heading.style.color = themeColor
+        box.style.borderColor = themeColor
+        turn.style.color = themeColor
+        circle.style.borderColor = themeColor
     })
+
+    // ...................Reaset button ...............
 
     reset.addEventListener('click', () => {
         box.textContent = ''
-        if (gameStarted) {
-            turn.textContent = "Game Started ! Let's Play"
-            box.disabled = false
-            clearInterval(count);
-            counter.textContent = 0
-            setInterval(() => {
-                counter.textContent = num2++
-            }, 1000);
-        }
-
+        turn.textContent = "Game Reset, Let's Play"
+        box.disabled = false
     })
 
+
+    // ...................Winning Condition ................
 
     let winningPatterns = [
         [0, 1, 2],
@@ -83,13 +79,12 @@ boxes.forEach((box) => {
                     turn.style.color = 'green';
                 } else {
                     turn.textContent = `Congratulation X Wins!`;
-                    turn.style.color = 'blue';
+                    turn.style.color = 'red';
                 }
-                clearInterval(count);
 
                 boxes.forEach((box) => {
-                    box.disabled = true;
-                });
+                    box.disabled = true
+                })
 
                 return;
             }
@@ -102,6 +97,7 @@ boxes.forEach((box) => {
         }
 
         if (filledBoxes === boxes.length) {
+            turn.style.color = 'blue';
             turn.textContent = `It's a Draw! Reset game`;
         }
     };
