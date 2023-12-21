@@ -94,6 +94,10 @@ body {
         right: 10px;
         top: 50px;
     }
+
+    .para{
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width : 375px) {
