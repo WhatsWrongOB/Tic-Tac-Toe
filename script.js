@@ -6,11 +6,32 @@ const theme = document.querySelector('.color')
 const btn = document.querySelector('.btn')
 const heading = document.querySelector('.heading')
 
+
+// --------------------Sounds---------------------
+
+const sound = [
+    'audio/ahshit.mp3',
+    "audio/bhai.mp3",
+    "audio/emotion.mp3",
+    "audio/fbi.mp3",
+    "audio/friends.mp3",
+    "audio/jhoncena.mp3",
+     "audio/coffin.mp3",
+     "audio/salam.mp3"
+
+]
+
+
+// -----------------------Game----------------------
+
 let box0 = true
 
 boxes.forEach((box) => {
 
     box.addEventListener('click', () => {
+        var randomSound = Math.floor(Math.random() * sound.length);
+
+        var audio = new Audio(sound[randomSound]);
 
         if (box0) {
             box.textContent = 'O'
@@ -18,6 +39,10 @@ boxes.forEach((box) => {
             turn.textContent = 'Player  X turn'
             turn.style.color = 'red'
             box0 = false
+            audio.play()
+            setTimeout(() => {
+                audio.pause()
+            }, 2800);
         }
         else {
             box.textContent = 'X'
@@ -25,6 +50,11 @@ boxes.forEach((box) => {
             turn.textContent = 'Player O turn'
             turn.style.color = 'green'
             box0 = true
+            audio.play()
+            setTimeout(() => {
+                audio.pause()
+
+            }, 2800);
         }
 
         box.disabled = true
@@ -85,7 +115,7 @@ boxes.forEach((box) => {
                 boxes.forEach((box) => {
                     box.disabled = true
                 })
-
+                audio.play()
                 return;
             }
         }
