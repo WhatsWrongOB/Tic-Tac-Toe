@@ -29,11 +29,6 @@ body {
     color: blueviolet;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .game {
     width: 370px;
@@ -95,13 +90,14 @@ body {
         top: 50px;
     }
 
-    .para{
+    .para {
         font-size: 0.8rem;
     }
+
+    
 }
 
 @media (max-width : 375px) {
-
 
     .container {
         margin-top: 70px;
@@ -112,4 +108,6 @@ body {
         right: 10px;
         top: 10px;
     }
+
+
 }

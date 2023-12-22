@@ -9,17 +9,10 @@ const heading = document.querySelector('.heading')
 
 // --------------------Sounds---------------------
 
-const sound = [
-    'audio/ahshit.mp3',
-    "audio/bhai.mp3",
-    "audio/emotion.mp3",
-    "audio/fbi.mp3",
-    "audio/friends.mp3",
-    "audio/jhoncena.mp3",
-     "audio/coffin.mp3",
-     "audio/salam.mp3"
-
-]
+const clickSound = new Audio('audio/click.wav')
+const clickSoundTwo = new Audio('audio/click2.wav')
+const winSound = new Audio('audio/friends.mp3')
+const drawSound = new Audio('audio/ahshit.mp3')
 
 
 // -----------------------Game----------------------
@@ -29,9 +22,7 @@ let box0 = true
 boxes.forEach((box) => {
 
     box.addEventListener('click', () => {
-        var randomSound = Math.floor(Math.random() * sound.length);
 
-        var audio = new Audio(sound[randomSound]);
 
         if (box0) {
             box.textContent = 'O'
@@ -39,10 +30,7 @@ boxes.forEach((box) => {
             turn.textContent = 'Player  X turn'
             turn.style.color = 'red'
             box0 = false
-            audio.play()
-            setTimeout(() => {
-                audio.pause()
-            }, 2800);
+            clickSound.play()
         }
         else {
             box.textContent = 'X'
@@ -50,20 +38,16 @@ boxes.forEach((box) => {
             turn.textContent = 'Player O turn'
             turn.style.color = 'green'
             box0 = true
-            audio.play()
-            setTimeout(() => {
-                audio.pause()
-
-            }, 2800);
+            clickSoundTwo.play()
         }
 
         box.disabled = true
         checkWinner()
 
+
     })
 
     // ..........Theme functionality..............
-
 
     theme.addEventListener('change', (e) => {
         let themeColor = e.target.value
@@ -78,8 +62,10 @@ boxes.forEach((box) => {
 
     reset.addEventListener('click', () => {
         box.textContent = ''
-        turn.textContent = "Game Reset, Let's Play"
+        turn.textContent = "Let's Play"
         box.disabled = false
+        clickSound.play()
+        winSound.pause()
     })
 
 
@@ -105,17 +91,21 @@ boxes.forEach((box) => {
             if (boxes[a].textContent && boxes[a].textContent === boxes[b].textContent && boxes[b].textContent === boxes[c].textContent) {
 
                 if (boxes[a].textContent === 'O') {
-                    turn.textContent = `Congratulation O Wins!`;
-                    turn.style.color = 'green';
+                    turn.textContent = `X be like `;
+                    turn.style.color = 'blue';
                 } else {
-                    turn.textContent = `Congratulation X Wins!`;
-                    turn.style.color = 'red';
+                    turn.textContent = `O be like`;
+                    turn.style.color = 'blue';
                 }
+                winSound.play()
+                setInterval(() => {
+                    winSound.pause()
+                }, 10000);
 
                 boxes.forEach((box) => {
                     box.disabled = true
                 })
-                audio.play()
+
                 return;
             }
         }
@@ -129,6 +119,7 @@ boxes.forEach((box) => {
         if (filledBoxes === boxes.length) {
             turn.style.color = 'blue';
             turn.textContent = `It's a Draw! Reset game`;
+            drawSound.play()
         }
     };
 })
