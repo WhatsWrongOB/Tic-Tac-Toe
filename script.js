@@ -65,7 +65,6 @@ boxes.forEach((box) => {
         turn.textContent = "Let's Play"
         box.disabled = false
         clickSound.play()
-        winSound.pause()
     })
 
 
@@ -98,9 +97,6 @@ boxes.forEach((box) => {
                     turn.style.color = 'blue';
                 }
                 winSound.play()
-                setInterval(() => {
-                    winSound.pause()
-                }, 10000);
 
                 boxes.forEach((box) => {
                     box.disabled = true
