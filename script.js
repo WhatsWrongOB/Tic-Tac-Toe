@@ -64,7 +64,7 @@ boxes.forEach((box) => {
         box.textContent = ''
         turn.textContent = "Let's Play"
         box.disabled = false
-        clickSound.play()
+        clickSound.play();
     })
 
 
