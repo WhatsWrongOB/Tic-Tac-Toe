@@ -44,18 +44,17 @@ boxes.forEach((box) => {
         box.disabled = true
         checkWinner()
 
-
     })
 
     // ..........Theme functionality..............
 
     theme.addEventListener('change', (e) => {
-        let themeColor = e.target.value
-        btn.style.backgroundColor = themeColor
-        heading.style.color = themeColor
-        box.style.borderColor = themeColor
-        turn.style.color = themeColor
-        circle.style.borderColor = themeColor
+        let themeColor = e.target.value;
+        btn.style.backgroundColor = themeColor;
+        heading.style.color = themeColor;
+        box.style.borderColor = themeColor;
+        turn.style.color = themeColor;
+        circle.style.borderColor = themeColor;
     })
 
     // ...................Reaset button ...............
@@ -65,6 +64,7 @@ boxes.forEach((box) => {
         turn.textContent = "Let's Play"
         box.disabled = false
         clickSound.play();
+        
     })
 
 
