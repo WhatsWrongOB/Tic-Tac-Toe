@@ -15,7 +15,33 @@ const winSound = new Audio('audio/friends.mp3')
 const drawSound = new Audio('audio/ahshit.mp3')
 
 
+// ............Computer Move Functionality...........
+
+const getRandomEmptyBox = () => {
+    const emptyBoxes = Array.from(boxes).filter(box => !box.textContent);
+    if (emptyBoxes.length === 0) {
+        return -1;
+    }
+    const randomIndex = Math.floor(Math.random() * emptyBoxes.length);
+    return Array.from(boxes).indexOf(emptyBoxes[randomIndex]);
+};
+
+// const computerMove = () => {
+//     const emptyBoxIndex = getRandomEmptyBox();
+
+//     if (emptyBoxIndex !== -1) {
+//         boxes[emptyBoxIndex].textContent = 'X';
+//         boxes[emptyBoxIndex].style.color = 'red';
+//         turn.textContent = 'Player O turn';
+//         turn.style.color = 'green';
+//         clickSoundTwo.play();
+//         boxes[emptyBoxIndex].disabled = true;
+//         checkWinner();
+//     }
+// };
+
 // -----------------------Game----------------------
+
 
 let box0 = true
 
@@ -42,9 +68,13 @@ boxes.forEach((box) => {
         }
 
         box.disabled = true
+
         checkWinner()
 
+        // computerMove()
+
     })
+
 
     // ..........Theme functionality..............
 
@@ -64,9 +94,8 @@ boxes.forEach((box) => {
         turn.textContent = "Let's Play"
         box.disabled = false
         clickSound.play();
-        
-    })
 
+    })
 
     // ...................Winning Condition ................
 
